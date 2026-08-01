@@ -15,7 +15,7 @@ from pathlib import Path
 
 import requests
 
-DEFAULT_PACKAGE = "biasbuster"
+DEFAULT_PACKAGE = "rai-governance-platform"
 UA = "Mozilla/5.0 (compatible; profile-readme-bot/1.0)"
 
 

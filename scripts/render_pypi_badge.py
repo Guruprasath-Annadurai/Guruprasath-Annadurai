@@ -52,6 +52,13 @@ def build_svg(data: dict) -> str:
     week = data["last_week"]
     spark_d, spark_len = sparkline_path(data.get("series", []))
 
+    # Dynamic spacing for the "N last 30d   M last 7d" row so wider
+    # numbers (3+ digits) never collide with their label.
+    num_w, label_w, gap = 10.8, 7.2, 10
+    stat2_label1_x = PAD_X + len(str(month)) * num_w + gap
+    stat2_week_x = stat2_label1_x + len("last 30d") * label_w + gap * 2.5
+    stat2_label2_x = stat2_week_x + len(str(week)) * num_w + gap
+
     spark_x = WIDTH - PAD_X - SPARK_W
     spark_y = TITLEBAR_H + 34
 
@@ -89,9 +96,9 @@ def build_svg(data: dict) -> str:
 
   <g class="stat d2">
     <text x="{PAD_X}" y="{TITLEBAR_H + 94}" font-size="18" fill="{TEXT}">{month}</text>
-    <text x="{PAD_X + 34}" y="{TITLEBAR_H + 94}" font-size="12" fill="{DIM}">last 30d</text>
-    <text x="{PAD_X + 130}" y="{TITLEBAR_H + 94}" font-size="18" fill="{TEXT}">{week}</text>
-    <text x="{PAD_X + 155}" y="{TITLEBAR_H + 94}" font-size="12" fill="{DIM}">last 7d</text>
+    <text x="{stat2_label1_x:.1f}" y="{TITLEBAR_H + 94}" font-size="12" fill="{DIM}">last 30d</text>
+    <text x="{stat2_week_x:.1f}" y="{TITLEBAR_H + 94}" font-size="18" fill="{TEXT}">{week}</text>
+    <text x="{stat2_label2_x:.1f}" y="{TITLEBAR_H + 94}" font-size="12" fill="{DIM}">last 7d</text>
   </g>
 
   <g transform="translate({spark_x},{spark_y})">

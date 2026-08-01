@@ -18,7 +18,7 @@ ROWS = [
     ("Now", "Building Edora — EdTech for JEE/NEET"),
     ("Prev", "Creator of ResponsibleAI (bias testing)"),
     ("Stack", "Python · LLM tooling · AI Engineering"),
-    ("Highlights", "pip install biasbuster"),
+    ("Highlights", "pip install rai-governance-platform"),
 ]
 
 WIDTH = 490
