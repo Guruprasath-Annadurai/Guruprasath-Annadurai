@@ -36,7 +36,23 @@ def prep(src_path: str, out_path: str) -> None:
     contrasted_img = Image.fromarray(contrasted).convert("RGBA")
     contrasted_img.putalpha(cutout.getchannel("A"))
 
-    # 3. Composite onto pure white so background maps to blank glyphs.
+    # 3. Crop to the subject's bounding box (+ padding) so the face/torso
+    #    fills the frame instead of empty space around the cutout.
+    alpha = np.array(contrasted_img.getchannel("A"))
+    ys, xs = np.where(alpha > 10)
+    if len(xs) and len(ys):
+        x0, x1 = xs.min(), xs.max()
+        y0, y1 = ys.min(), ys.max()
+        pad_x = int((x1 - x0) * 0.06)
+        pad_y = int((y1 - y0) * 0.06)
+        w, h = contrasted_img.size
+        x0 = max(0, x0 - pad_x)
+        y0 = max(0, y0 - pad_y)
+        x1 = min(w, x1 + pad_x)
+        y1 = min(h, y1 + pad_y)
+        contrasted_img = contrasted_img.crop((x0, y0, x1, y1))
+
+    # 4. Composite onto pure white so background maps to blank glyphs.
     white_bg = Image.new("RGBA", contrasted_img.size, (255, 255, 255, 255))
     composited = Image.alpha_composite(white_bg, contrasted_img).convert("L")
 

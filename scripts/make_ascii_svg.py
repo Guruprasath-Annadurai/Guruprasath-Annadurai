@@ -15,7 +15,7 @@ from PIL import Image
 RAMP = " .`:-=+*cs#%@"   # bright (sparse) -> dark (dense)
 #        ^ leading space clears the background to nothing
 
-COLS = 100
+COLS = 130
 CHAR_W = 6.0
 CHAR_H = 11.0
 FILL = "#8b949e"          # single light-gray fill, no rainbow
@@ -27,7 +27,7 @@ def image_to_rows(img_path: str, cols: int = COLS) -> list[str]:
     img = Image.open(img_path).convert("L")
     aspect = img.height / img.width
     rows = max(1, round(cols * aspect * (CHAR_W / CHAR_H)))
-    small = img.resize((cols, rows))
+    small = img.resize((cols, rows), Image.LANCZOS)
     px = small.load()
 
     lines = []
@@ -68,7 +68,8 @@ def build_svg(lines: list[str]) -> str:
         escaped = html.escape(line)
         body.append(
             f'<g clip-path="url(#{clip_id})">'
-            f'<text x="0" y="{y}" xml:space="preserve">{escaped}</text>'
+            f'<text x="0" y="{y}" xml:space="preserve" '
+            f'textLength="{row_width}" lengthAdjust="spacingAndGlyphs">{escaped}</text>'
             f'</g>'
         )
 
