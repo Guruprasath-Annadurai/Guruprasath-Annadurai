@@ -13,4 +13,9 @@
   </tr>
 </table>
 
+<br><br>
+
+<h3><code>guruprasath@github ~ $ pip show biasbuster</code></h3>
+<img src="./pypi-badge.svg" width="860" />
+
 </div>

@@ -21,7 +21,9 @@ jobs:
       - run: pip install requests beautifulsoup4
       - run: python scripts/fetch_contributions.py
       - run: python scripts/render_heatmap_svg.py
+      - run: python scripts/fetch_pypi_stats.py
+      - run: python scripts/render_pypi_badge.py
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: refresh contribution graph [skip ci]"
-          file_pattern: "data/contributions.json contrib-heatmap.svg"
+          commit_message: "chore: refresh contribution graph + pypi stats [skip ci]"
+          file_pattern: "data/contributions.json contrib-heatmap.svg data/pypi_stats.json pypi-badge.svg"
