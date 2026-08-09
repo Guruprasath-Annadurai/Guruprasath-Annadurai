@@ -31,9 +31,9 @@
   </g>
 
   <g class="stat d2">
-    <text x="28" y="128" font-size="18" fill="#c9d1d9">85</text>
+    <text x="28" y="128" font-size="18" fill="#c9d1d9">55</text>
     <text x="59.6" y="128" font-size="12" fill="#7d8590">last 30d</text>
-    <text x="142.2" y="128" font-size="18" fill="#c9d1d9">5</text>
+    <text x="142.2" y="128" font-size="18" fill="#c9d1d9">3</text>
     <text x="163.0" y="128" font-size="12" fill="#7d8590">last 7d</text>
   </g>
 
