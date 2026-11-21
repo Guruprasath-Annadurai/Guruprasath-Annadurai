@@ -1,10 +1,10 @@
 {
   "package": "rai-governance-platform",
-  "fetched_at": "2026-11-20T15:33:08.780472Z",
-  "last_day": 4,
-  "last_week": 47,
-  "last_month": 180,
-  "total_all_time": 2145,
+  "fetched_at": "2026-11-21T14:44:10.032187Z",
+  "last_day": 10,
+  "last_week": 53,
+  "last_month": 189,
+  "total_all_time": 2155,
   "series": [
     {
       "date": "2026-06-25",
@@ -501,6 +501,10 @@
     {
       "date": "2026-11-19",
       "downloads": 4
+    },
+    {
+      "date": "2026-11-20",
+      "downloads": 10
     }
   ]
 }
